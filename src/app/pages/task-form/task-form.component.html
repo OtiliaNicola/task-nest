@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body p-4">
+            <h2 class="text-center mb-4">Nueva Tarea</h2>
+  
+            <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Título"
+                  formControlName="title"
+                >
+              </div>
+  
+              <div class="mb-3">
+                <textarea
+                  class="form-control"
+                  placeholder="Descripción"
+                  formControlName="description"
+                  rows="3"
+                ></textarea>
+              </div>
+  
+              <div class="mb-4">
+                <input
+                  type="date"
+                  class="form-control"
+                  formControlName="date"
+                >
+              </div>
+  
+              <button
+                type="submit"
+                class="btn w-100"
+                [disabled]="taskForm.invalid">
+                Guardar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

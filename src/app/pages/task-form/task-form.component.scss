@@ -1,0 +1,61 @@
+// src/app/components/task-form/task-form.component.scss
+.task-form-card {
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  border: 1px solid rgba(#B7D4B4, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  .card-body {
+    padding: 2rem;
+  }
+
+  h2 {
+    color: #8AB987;
+    font-weight: 500;
+  }
+
+  .form-label {
+    color: #6c757d;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-control {
+    border-radius: 10px;
+    border-color: rgba(#B7D4B4, 0.2);
+    padding: 0.75rem 1rem;
+    
+    &:focus {
+      border-color: #B7D4B4;
+      box-shadow: 0 0 0 0.25rem rgba(#B7D4B4, 0.25);
+    }
+  }
+
+  textarea.form-control {
+    resize: none;
+  }
+
+  .btn-primary {
+    padding: 0.75rem;
+    font-weight: 500;
+    border-radius: 10px;
+    background-color: #B7D4B4;
+    border-color: #B7D4B4;
+    
+    &:hover:not(:disabled) {
+      background-color: #8AB987;
+      border-color: #8AB987;
+    }
+    
+    &:disabled {
+      background-color: rgba(#B7D4B4, 0.7);
+      border-color: rgba(#B7D4B4, 0.7);
+    }
+  }
+
+  .invalid-feedback {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+}
