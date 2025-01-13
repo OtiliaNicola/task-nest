@@ -1,0 +1,8 @@
+// src/styles/_mixins.scss
+@mixin card-shadow {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  @mixin gradient-background {
+    background: linear-gradient(135deg, #B7E5B4, #D1EBC3);
+  }

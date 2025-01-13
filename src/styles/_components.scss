@@ -1,0 +1,31 @@
+// src/styles/_components.scss
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    border: 1px solid $border-color;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-control {
+    border-radius: $border-radius;
+    border-color: $border-color;
+    padding: 0.75rem 1rem;
+    
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 0.25rem rgba($primary-color, 0.25);
+    }
+  }
+  
+  .btn-primary {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    border-radius: $border-radius;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    
+    &:hover:not(:disabled) {
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+    }
+  }
