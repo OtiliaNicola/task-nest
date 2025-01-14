@@ -15,14 +15,16 @@ export class LocalStorageService {
     }
   }
 
-  get(key: string): any {
-    try {
-      const item = localStorage.getItem(key);
-      return item ? JSON.parse(item) : null;
-    } catch (e) {
-      console.error('Error reading from localStorage', e);
-      return null;
-    }
+  get(key: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      try {
+        const item = localStorage.getItem(key);
+        resolve(item ? JSON.parse(item) : null);
+      } catch (e) {
+        console.error('Error reading from localStorage', e);
+        reject(e);
+      }
+    });
   }
 
   remove(key: string): void {
