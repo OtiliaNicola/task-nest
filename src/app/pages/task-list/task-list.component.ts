@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { TaskService } from '../../core/services/task.service';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 import { Task } from '../../core/interfaces/task.interface';
+import { LocalStorageService } from '../../core/services/local-storage.service';
 
 @Component({
   selector: 'app-task-list',
@@ -13,17 +13,22 @@ import { Task } from '../../core/interfaces/task.interface';
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
+  private readonly localService = inject(LocalStorageService);
+  private readonly router = inject(Router);
+
   @ViewChild('confirmDialog') confirmDialog!: ConfirmDialogComponent;
   tasks: Task[] = [];
   taskToDelete: number | null = null;
 
   constructor(
-    private taskService: TaskService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.tasks = this.taskService.getTasks();
+
+  //  this.localService.get().subscribe((data)=>{
+  //   this.tasks = data; 
+    
+  //  });
   }
 
   onNewTask(): void {
@@ -35,7 +40,7 @@ export class TaskListComponent implements OnInit {
   }
 
   onToggleComplete(task: Task): void {
-    this.taskService.toggleComplete(task.id);
+    // this.localService.toggleComplete(task);
   }
 
   onDeleteClick(taskId: number): void {
@@ -45,8 +50,8 @@ export class TaskListComponent implements OnInit {
 
   onDeleteConfirmed(): void {
     if (this.taskToDelete) {
-      this.taskService.deleteTask(this.taskToDelete);
-      this.tasks = this.taskService.getTasks();
+      // this.localService.deleteTask(this.taskToDelete);
+      //this.tasks = this.taskService.getTasks();
     }
   }
 }
