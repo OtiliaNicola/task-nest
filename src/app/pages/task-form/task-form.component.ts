@@ -20,6 +20,7 @@ export class TaskFormComponent implements OnInit {
   taskForm: FormGroup;
   isEditMode = false;
   taskId?: number;
+  taskStorage: any[] = [];
 
   constructor() {
     this.taskForm = this.fb.group({
@@ -29,40 +30,45 @@ export class TaskFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  //   const id = this.route.snapshot.params['id'];
-  //   if (id) {
-  //     this.isEditMode = true;
-  //     this.taskId = +id;
-  //     this.localService.get('tasks').find((t) => {
+  async ngOnInit(): Promise<void> {
+    this.taskStorage = await this.localService.get('task') || [];
 
-  //       t => t.id === this.taskId
-  //     });
-  //     if (task) {
-  //       this.taskForm.patchValue({
-  //         title: task.title,
-  //         description: task.description,
-  //         date: task.date
-  //       });
-  //     }
-  //   }
+    const id = this.route.snapshot.params['id'];
+
+    if (id) {
+      this.isEditMode = true;
+      this.taskId = +id;
+
+      const task = this.taskStorage.find((task) => task.id === this.taskId);
+      if (task) {
+        this.taskForm.patchValue(task);
+      }
+    }
   }
 
   onSubmit(): void {
     if (this.taskForm.valid) {
-
       if (this.isEditMode && this.taskId) {
-        // this.localService.({
-        //   id: this.taskId,
-        //   ...this.taskForm.value,
-        //   completed: false
-        // });
+        this.taskStorage = this.taskStorage.map((task) => {
+          if (task.id === this.taskId) {
+            return {
+              id: this.taskId,
+              ...this.taskForm.value,
+              completed: task.completed
+            };
+          }
+          return task;
+        });
       } else {
-        console.log(this.taskForm.value.date);
-
-        this.localService.set('task', { ...this.taskForm.value, completed: false })
+        this.taskStorage.push({
+          id: this.taskStorage.length + 1,
+          ...this.taskForm.value,
+          completed: false
+        });
+      }
+      this.localService.set('task', this.taskStorage);
+      this.taskForm.reset();
       this.router.navigate(['/tasks']);
     }
   }
-}
 }

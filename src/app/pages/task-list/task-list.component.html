@@ -1,9 +1,9 @@
 <div class="page-container">
       <div class="content-card">
         <div class="card-body p-4y">
-          <h2 class="card-title mb-0">Mis Tareas</h2>
+          <h2 class="text-center mb-4">Mis Tareas</h2>
           <div class="d-flex justify-content-between align-items-center mb-4">
-            <button class="btn btn-primary" (click)="onNewTask()">
+            <button class="btn btn-primary text-center mb-4" (click)="onNewTask()">
               <i class="bi bi-plus-lg me-2"></i>Nueva Tarea
             </button>
           </div>
@@ -39,4 +39,4 @@
       </div>
 </div>
 
-<app-confirm-dialog #confirmDialog></app-confirm-dialog>
+<app-confirm-dialog (confirm)="onDeleteConfirmed()" #confirmDialog></app-confirm-dialog>

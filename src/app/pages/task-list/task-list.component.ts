@@ -19,17 +19,16 @@ export class TaskListComponent implements OnInit {
   @ViewChild('confirmDialog') confirmDialog!: ConfirmDialogComponent;
   tasks: Task[] = [];
   taskToDelete: number | null = null;
+  taskStorage: any[] = [];
 
   constructor(
   ) {}
 
-  ngOnInit(): void {
-
-  //  this.localService.get().subscribe((data)=>{
-  //   this.tasks = data; 
-    
-  //  });
-  }
+  async ngOnInit(): Promise<void> {
+    this.taskStorage = await this.localService.get('task') || [];
+    this.tasks = this.taskStorage;
+   };
+  
 
   onNewTask(): void {
     this.router.navigate(['/tasks/new']);
@@ -40,7 +39,13 @@ export class TaskListComponent implements OnInit {
   }
 
   onToggleComplete(task: Task): void {
-    // this.localService.toggleComplete(task);
+    this.taskStorage.forEach((item)=>{
+      if(item.id === task.id){
+        item.completed = !item.completed;
+      }
+    })
+    this.localService.set('task', this.taskStorage);
+    this.tasks = this.taskStorage;
   }
 
   onDeleteClick(taskId: number): void {
@@ -50,8 +55,10 @@ export class TaskListComponent implements OnInit {
 
   onDeleteConfirmed(): void {
     if (this.taskToDelete) {
-      // this.localService.deleteTask(this.taskToDelete);
-      //this.tasks = this.taskService.getTasks();
+      this.taskStorage = this.taskStorage.filter((task) => task.id !== this.taskToDelete);
+      this.localService.set('task', this.taskStorage);
+      this.tasks = this.taskStorage;
+      this.taskToDelete = null;
     }
   }
 }
