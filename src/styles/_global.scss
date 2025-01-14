@@ -1,9 +1,11 @@
 // src/styles/_global.scss
+@use './mixins' as m;
+@use './variables' as v;
 body {
-    @include gradient-background;
+    @include m.gradient-background;
     min-height: 100vh;
-    font-family: $font-family-base;
-    font-size: $font-size-base;
+    font-family: v.$font-family-base;
+    font-size: v.$font-size-base;
   }
 
   .page-container {

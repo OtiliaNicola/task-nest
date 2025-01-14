@@ -5,14 +5,19 @@ $secondary: #8AB987;
 $success: #198754;
 $error: #dc3545;
 $background: #F5F9F5;
+$white: #FFFFFF;
+$gray-100: #F8F9FA;
+$gray-200: #E9ECEF;
+$gray-500: #ADB5BD;
 
 // Espaciado
-$spacing-unit: 8px;
+$spacer: 1rem;
 $border-radius: 15px;
+$box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
 // Tipografía
 $font-family-base: 'Segoe UI', sans-serif;
-$font-size-base: 16px;
+$font-size-base: 1rem;
 
 // src/styles/_variables.scss
 $primary-color: #B7D4B4;

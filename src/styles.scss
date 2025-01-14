@@ -1,9 +1,6 @@
-// src/styles.scss
-// Importar Bootstrap
-@import 'bootstrap/scss/bootstrap';
 
-// Importar nuestros archivos
-@import './styles/variables';
-@import './styles/mixins';
-@import './styles/components';
-@import './styles/global';
+@use 'bootstrap/scss/bootstrap' as bootstrap;
+@use './styles/variables' as vars;
+@use './styles/mixins' as mixins;
+@use './styles/components';
+@use './styles/global';

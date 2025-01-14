@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Tarea número 1",
+      "description": "Esta es una tarea de ejemplo",
+      "date": "2024-01-14",
+      "completed": false
+    },
+    {
+      "id": "dbf5",
+      "title": "dsfhjks",
+      "description": "hadjfhgasj",
+      "date": "2025-01-10T00:00:00.000Z",
+      "completed": false
+    },
+    {
+      "id": "74a8",
+      "title": "dfjhfjhdgf",
+      "description": "FJHGJHGKJXC",
+      "date": "2025-01-14T00:00:00.000Z",
+      "completed": false
+    }
+  ]
+}
