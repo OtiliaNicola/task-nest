@@ -46,7 +46,7 @@ export class TaskFormComponent implements OnInit {
 
     if (id) {
       this.isEditMode = true;
-      this.taskId = +id;
+      this.taskId = id;
 
       const task = this.taskStorage.find((task) => task.id === this.taskId);
       if (task) {
