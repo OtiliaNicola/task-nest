@@ -7,68 +7,74 @@
           <i class="bi bi-plus-lg me-2"></i>Nueva Tarea
         </button>
       </div>
+
       <div class="task-list">
-        @if(getPendingTasksCount() > 0) {
-          
-        <h3 class="mb-4">Pendientes {{toDoCounter()}}</h3>
-        @for (task of tasks; track task.id) {
-          @if(!task.completed) {
-          <div class="task-item">
-            <div class="task-content" [class.completed]="task.completed">
-              <h3 class="task-title">{{ task.title }}</h3>
-              <p class="task-description">{{ task.description }}</p>
-              <small class="task-date">{{ task.date | date:'mediumDate' }}</small>
-            </div>
-            <div class="task-actions">
-              <button (click)="onEdit(task)" class="btn btn-icon">
-                <i class="bi bi-pencil"></i>
-              </button>
-              <button (click)="onToggleComplete(task)" class="btn btn-icon">
-                <i class="bi" [class.bi-check-circle-fill]="task.completed" [class.bi-circle]="!task.completed"></i>
-              </button>
-              <button (click)="onDeleteClick(task.id)" class="btn btn-icon text-danger">
-                <i class="bi bi-trash"></i>
-              </button>
-            </div>
+        @if(tasks.length === 0) {
+          <div class="text-center py-4 text-muted">
+            <i class="bi bi-inbox-fill fs-1 mb-3 d-block"></i>
+            <p>No hay tareas pendientes</p>
           </div>
+        } @else {
+          @if(toDoCounter() > 0) {
+            <h3 class="mb-4">Pendientes {{toDoCounter()}}</h3>
+            @for (task of tasks; track task.id) {
+              @if(!task.completed) {
+                <div class="task-item">
+                  <div class="task-content" [class.completed]="task.completed">
+                    <h3 class="task-title">{{ task.title }}</h3>
+                    <p class="task-description">{{ task.description }}</p>
+                    <small class="task-date">{{ task.date | date: 'shortDate' }}</small>
+                  </div>
+                  <div class="task-actions">
+                    <button (click)="onEdit(task)" class="btn btn-icon">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button (click)="onToggleComplete(task)" class="btn btn-icon">
+                      <i class="bi" [class.bi-check-circle-fill]="task.completed" [class.bi-circle]="!task.completed"></i>
+                    </button>
+                    <button (click)="onDeleteClick(task.id)" class="btn btn-icon text-danger">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              }
+            }
           }
-        }  
-      }
-      @if(getCompletedTasksCount() > 0) {
-        <div class="task-list"></div>
-        <h3 class="mb-4">Completadas {{completeTasksCounter()}}</h3>
-        @for (task of tasks; track task.id) {
-          @if(task.completed) {
-          <div class="task-item">
-            <div class="task-content" [class.completed]="task.completed">
-              <h3 class="task-title">{{ task.title }}</h3>
-              <p class="task-description">{{ task.description }}</p>
-              <small class="task-date">{{ task.date | date:'mediumDate' }}</small>
-            </div>
-            <div class="task-actions">
-              <button (click)="onEdit(task)" class="btn btn-icon">
-                <i class="bi bi-pencil"></i>
-              </button>
-              <button (click)="onToggleComplete(task)" class="btn btn-icon">
-                <i class="bi" [class.bi-check-circle-fill]="task.completed" [class.bi-circle]="!task.completed"></i>
-              </button>
-              <button (click)="onDeleteClick(task.id)" class="btn btn-icon text-danger">
-                <i class="bi bi-trash"></i>
-              </button>
-            </div>
-          </div>
+
+          @if(completeTasksCounter() > 0) {
+            <h3 class="mb-4">Completadas {{completeTasksCounter()}}</h3>
+            @for (task of tasks; track task.id) {
+              @if(task.completed) {
+                <div class="task-item">
+                  <div class="task-content" [class.completed]="task.completed">
+                    <h3 class="task-title">{{ task.title }}</h3>
+                    <p class="task-description">{{ task.description }}</p>
+                    <small class="task-date">{{ task.date | date:'mediumDate' }}</small>
+                  </div>
+                  <div class="task-actions">
+                    <button (click)="onEdit(task)" class="btn btn-icon">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button (click)="onToggleComplete(task)" class="btn btn-icon">
+                      <i class="bi" [class.bi-check-circle-fill]="task.completed" [class.bi-circle]="!task.completed"></i>
+                    </button>
+                    <button (click)="onDeleteClick(task.id)" class="btn btn-icon text-danger">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              }
+            }
+          }
         }
-      }
-    }
-      </div>
-        <!-- @empty {
-              <div class="text-center py-4 text-muted">
-                No hay tareas pendientes
-              </div>
-            } -->
       </div>
     </div>
   </div>
 </div>
 
 <app-confirm-dialog (confirm)="onDeleteConfirmed()" #confirmDialog></app-confirm-dialog>
+<!-- @empty {
+      <div class="text-center py-4 text-muted">
+        No hay tareas pendientes
+      </div>
+    } -->
