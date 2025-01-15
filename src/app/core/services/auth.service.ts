@@ -30,8 +30,8 @@ export class AuthService {
     }
   }
 
-    async isLoggedIn(): Promise<boolean> {
-      return await this.localService.get('token');
+    isLoggedIn(): string | null {
+      return  this.localService.get('token');
     }
 
     logout(): void {
