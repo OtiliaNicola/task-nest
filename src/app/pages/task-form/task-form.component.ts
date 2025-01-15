@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from '../../core/services/local-storage.service';
+import { UtilService } from '../../core/services/utils.service';
 
 @Component({
   selector: 'app-task-form',
@@ -16,6 +17,7 @@ export class TaskFormComponent implements OnInit {
   private readonly localService = inject(LocalStorageService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly utilService = inject(UtilService);
 
   taskForm: FormGroup;
   isEditMode = false;
@@ -77,12 +79,14 @@ export class TaskFormComponent implements OnInit {
           }
           return task;
         });
+        this.utilService.showToast('Tarea actualizada correctamente');
       } else {
         this.taskStorage.push({
           id: crypto.randomUUID(),
           ...this.taskForm.value,
           completed: false
         });
+        this.utilService.showToast('Tarea creada correctamente');
       }
       this.localService.set('task', this.taskStorage);
       this.taskForm.reset();
