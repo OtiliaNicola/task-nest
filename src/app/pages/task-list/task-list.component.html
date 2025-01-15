@@ -7,8 +7,9 @@
           <i class="bi bi-plus-lg me-2"></i>Nueva Tarea
         </button>
       </div>
-
       <div class="task-list">
+        @if(getPendingTasksCount() > 0) {
+          
         <h3 class="mb-4">Pendientes {{toDoCounter()}}</h3>
         @for (task of tasks; track task.id) {
           @if(!task.completed) {
@@ -31,8 +32,9 @@
             </div>
           </div>
           }
+        }  
       }
-        <hr>
+      @if(getCompletedTasksCount() > 0) {
         <div class="task-list"></div>
         <h3 class="mb-4">Completadas {{completeTasksCounter()}}</h3>
         @for (task of tasks; track task.id) {
@@ -55,8 +57,10 @@
               </button>
             </div>
           </div>
-          }
+        }
       }
+    }
+      </div>
         <!-- @empty {
               <div class="text-center py-4 text-muted">
                 No hay tareas pendientes
