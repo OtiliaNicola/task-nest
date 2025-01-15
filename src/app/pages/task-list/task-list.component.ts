@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog.component';
 import { Task } from '../../core/interfaces/task.interface';
 import { LocalStorageService } from '../../core/services/local-storage.service';
+import { UtilService } from '../../core/services/utils.service';
 
 @Component({
   selector: 'app-task-list',
@@ -15,6 +16,7 @@ import { LocalStorageService } from '../../core/services/local-storage.service';
 export class TaskListComponent implements OnInit {
   private readonly localService = inject(LocalStorageService);
   private readonly router = inject(Router);
+  private readonly utilService = inject(UtilService);
 
   @ViewChild('confirmDialog') confirmDialog!: ConfirmDialogComponent;
   tasks: Task[] = [];
@@ -24,8 +26,8 @@ export class TaskListComponent implements OnInit {
   constructor(
   ) {}
 
-  async ngOnInit(): Promise<void> {
-    this.taskStorage = await this.localService.get('task') || [];
+ ngOnInit(): void {
+    this.taskStorage = this.localService.get('task') || [];
     this.tasks = this.taskStorage;
    };
   
@@ -35,7 +37,13 @@ export class TaskListComponent implements OnInit {
   }
 
   onEdit(task: Task): void {
-    this.router.navigate(['/tasks/edit', task.id]);
+    this.router.navigate(['/tasks/edit', task.id], {
+      queryParams: {
+        title: task.title,
+        description: task.description,
+        date: task.date
+      }
+    });
   }
 
   onToggleComplete(task: Task): void {
@@ -58,6 +66,7 @@ export class TaskListComponent implements OnInit {
       this.taskStorage = this.taskStorage.filter((task) => task.id !== this.taskToDelete);
       this.localService.set('task', this.taskStorage);
       this.tasks = this.taskStorage;
+      this.utilService.showToast('Tarea eliminada correctamente');
       this.taskToDelete = null;
     }
   }
