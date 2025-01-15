@@ -79,7 +79,7 @@ export class TaskFormComponent implements OnInit {
         });
       } else {
         this.taskStorage.push({
-          id: this.taskStorage.length + 1,
+          id: crypto.randomUUID(),
           ...this.taskForm.value,
           completed: false
         });
