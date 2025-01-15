@@ -1,27 +1,43 @@
-// src/styles/_global.scss
-@use './mixins' as m;
-@use './variables' as v;
-body {
-    @include m.gradient-background;
-    min-height: 100vh;
-    font-family: v.$font-family-base;
-    font-size: v.$font-size-base;
-  }
+@use 'variables' as v;
+@use 'mixins' as m;
 
-  .page-container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1rem;
-    background: linear-gradient(135deg, #B7E5B4, #D1EBC3);
-  }
-  
-  .content-card {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
+// Estilos base
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: v.$font-family-base;
+  font-size: v.$font-size-base;
+  color: v.$text-color;
+  background-color: v.$background;
+  line-height: 1.5;
+}
+
+// Textos
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: v.$spacer;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+// Utilidades
+.text-muted {
+  color: v.$text-muted !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.mb-4 {
+  margin-bottom: v.$spacer * 1.5 !important;
+}
+
+// Animaciones
+.fade {
+  @include m.smooth-transition;
+}

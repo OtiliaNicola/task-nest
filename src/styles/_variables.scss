@@ -1,28 +1,29 @@
-// src/styles/_variables.scss
-// Colores
+// Colores principales
 $primary: #B7D4B4;
 $secondary: #8AB987;
 $success: #198754;
 $error: #dc3545;
+
+// Colores de fondo y texto
 $background: #F5F9F5;
+$text-color: #2C3E2E;
+$text-muted: #6c757d;
 $white: #FFFFFF;
+
+// Escala de grises
 $gray-100: #F8F9FA;
 $gray-200: #E9ECEF;
 $gray-500: #ADB5BD;
 
-// Espaciado
+// Espaciado y bordes
 $spacer: 1rem;
 $border-radius: 15px;
+$border-color: rgba($primary, 0.2);
 $box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
 // Tipografía
 $font-family-base: 'Segoe UI', sans-serif;
 $font-size-base: 1rem;
 
-// src/styles/_variables.scss
-$primary-color: #B7D4B4;
-$secondary-color: #8AB987;
-$text-color: #2C3E2E;
-$text-muted: #6c757d;
-$border-radius: 10px;
-$border-color: rgba(#B7D4B4, 0.2);
+// Gradientes
+$gradient-primary: linear-gradient(135deg, #B7E5B4, #D1EBC3);

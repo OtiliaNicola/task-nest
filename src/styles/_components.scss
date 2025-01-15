@@ -1,21 +1,27 @@
-// src/styles/_components.scss
-@use './variables' as v;
+@use 'variables' as v;
+@use 'mixins' as m;
+
+// Layout containers
 .page-container {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include m.flex-center;
   padding: v.$spacer * 2;
-  background: linear-gradient(135deg, #B7E5B4, #D1EBC3);
+  @include m.gradient-background;
 }
 
+// Cards
 .content-card {
   width: 100%;
   max-width: 500px;
   background: rgba(v.$white, 0.95);
   border-radius: v.$border-radius;
   box-shadow: v.$box-shadow;
-  border: 1px solid rgba(v.$primary, 0.1);
+  border: 1px solid v.$border-color;
+  @include m.smooth-transition;
+
+  &:hover {
+    @include m.box-shadow-hover;
+  }
 
   .card-body {
     padding: v.$spacer * 2;
@@ -28,27 +34,36 @@
   }
 }
 
+// Form controls
 .form-control {
   border-radius: v.$border-radius;
-  border-color: rgba(v.$primary, 0.2);
+  border-color: v.$border-color;
   padding: v.$spacer * 0.75;
+  @include m.smooth-transition;
 
   &:focus {
     border-color: v.$primary;
     box-shadow: 0 0 0 0.25rem rgba(v.$primary, 0.25);
   }
+
+  &::placeholder {
+    color: v.$text-muted;
+  }
 }
 
+// Buttons
 .btn-primary {
   background-color: v.$primary;
   border-color: v.$primary;
   border-radius: v.$border-radius;
   padding: v.$spacer * 0.75;
   font-weight: 500;
+  @include m.smooth-transition;
 
   &:hover:not(:disabled) {
     background-color: v.$secondary;
     border-color: v.$secondary;
+    @include m.box-shadow-hover;
   }
 
   &:disabled {

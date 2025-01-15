@@ -1,8 +1,26 @@
-// src/styles/_mixins.scss
+@use 'variables' as v;
+// Sombras
 @mixin card-shadow {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  }
-  
-  @mixin gradient-background {
-    background: linear-gradient(135deg, #B7E5B4, #D1EBC3);
-  }
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+@mixin box-shadow-hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+// Fondos
+@mixin gradient-background {
+  background: v.$gradient-primary;
+}
+
+// Contenedores
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Transiciones
+@mixin smooth-transition {
+  transition: all 0.3s ease-in-out;
+}
