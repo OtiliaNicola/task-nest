@@ -23,10 +23,17 @@ export class TaskFormComponent implements OnInit {
   taskStorage: any[] = [];
 
   constructor() {
+    const today = new Date().toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).split('/').reverse().join('-');
+
+
     this.taskForm = this.fb.group({
       title: ['', [Validators.required]],
       description: ['', Validators.required],
-      date: ['', Validators.required]
+      date: [today, Validators.required]
     });
   }
 
@@ -41,13 +48,24 @@ export class TaskFormComponent implements OnInit {
 
       const task = this.taskStorage.find((task) => task.id === this.taskId);
       if (task) {
-        this.taskForm.patchValue(task);
+        this.taskForm.patchValue(
+          {
+            ...task,
+            date: new Date(task.date).toISOString().split('T')[0]
+          }
+        );
       }
     }
   }
 
   onSubmit(): void {
     if (this.taskForm.valid) {
+      const formValue = {
+        ...this.taskForm.value,
+        // Asegurar que la fecha sea un objeto Date
+        date: new Date(this.taskForm.value.date)
+      };
+
       if (this.isEditMode && this.taskId) {
         this.taskStorage = this.taskStorage.map((task) => {
           if (task.id === this.taskId) {
@@ -70,5 +88,9 @@ export class TaskFormComponent implements OnInit {
       this.taskForm.reset();
       this.router.navigate(['/tasks']);
     }
+  }
+
+  onBack(): void {
+    this.router.navigate(['/tasks']);
   }
 }
