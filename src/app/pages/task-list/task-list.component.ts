@@ -61,4 +61,12 @@ export class TaskListComponent implements OnInit {
       this.taskToDelete = null;
     }
   }
+
+  toDoCounter(){
+    return this.tasks.filter(task => !task.completed).length;
+  }
+
+  completeTasksCounter(){
+    return this.tasks.filter(task => task.completed).length;
+  }
 }
