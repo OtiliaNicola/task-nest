@@ -28,7 +28,11 @@ export class TaskListComponent implements OnInit {
 
  ngOnInit(): void {
     this.taskStorage = this.localService.get('task') || [];
-    this.tasks = this.taskStorage;
+    //this.tasks = this.taskStorage;
+    this.tasks = this.taskStorage.map(task => ({
+      ...task,
+      date: new Date(task.date)
+    }));
    };
   
 
@@ -41,7 +45,8 @@ export class TaskListComponent implements OnInit {
       queryParams: {
         title: task.title,
         description: task.description,
-        date: task.date
+        date: task.date.toISOString(),
+        completed: task.completed
       }
     });
   }
