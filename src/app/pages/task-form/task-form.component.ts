@@ -1,14 +1,15 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from '../../core/services/local-storage.service';
 import { UtilService } from '../../core/services/utils.service';
+import { UnsavedChangesComponent } from '../../shared/components/unsaved-changes/unsaved-changes.component';
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, UnsavedChangesComponent],
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.scss']
 })
@@ -18,6 +19,9 @@ export class TaskFormComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly utilService = inject(UtilService);
+
+  @ViewChild(UnsavedChangesComponent)
+  unsavedChanges!: UnsavedChangesComponent;
 
   taskForm: FormGroup;
   isEditMode = false;
@@ -94,7 +98,21 @@ export class TaskFormComponent implements OnInit {
     }
   }
 
-  onBack(): void {
-    this.router.navigate(['/tasks']);
+  async onBack(): Promise<void> {
+    // Si el formulario está limpio (sin cambios), navegar directamente
+    if (!this.taskForm.dirty) {
+      this.router.navigate(['/tasks']);
+      return;
+    }
+
+    // Si hay cambios, mostrar el diálogo
+    try {
+      const confirmed = await this.unsavedChanges.open();
+      if (confirmed) {
+        this.router.navigate(['/tasks']);
+      }
+    } catch (error) {
+      console.error('Error en el diálogo:', error);
+    }
   }
 }
