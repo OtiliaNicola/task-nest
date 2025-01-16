@@ -1,59 +1,59 @@
 # TaskNest
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+TaskNest is a task management web application developed with Angular, which allows users to create, edit and manage their daily tasks efficiently.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- User authentication
+- Task management (create, edit, delete)
+- Task status (completed/pending)
+- Data persistence in LocalStorage
+- Responsive interface
+- Confirmation dialogues
+- Toast notifications
 
-```bash
+## Technologies Used
+
+- ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+- ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+- ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+- ![SASS/SCSS](https://img.shields.io/badge/SASS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+- ![LocalStorage](https://img.shields.io/badge/LocalStorage-4CAF50?style=for-the-badge&logo=databricks&logoColor=white)
+- ![Bootstrap Icons](https://img.shields.io/badge/Bootstrap%20Icons-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+
+## Project Structure
+
+src/ ├── application/ │ ├── core/ │ │ │ │ ├── guards/ │ │ │ ├── interfaces/ │ │ │ └─── services/ │ ├── pages/ │ │ │ ├─── login/ │ │ │ ├─── task list/ │ │ │ └── task form/ │ └── shared/ │ └── components/ └── styles/ └── styles/
+
+## Installation
+
+1. Clone the repository:
+
+````bash
+git clone https://github.com/OtiliaNicola/task-nest.git
+
+2. Install dependencies:
+cd task-nest
+npm install
+
+3.Start the development server:
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4.Navigate to http://localhost:4200/
 
-## Code scaffolding
+## Key Features
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Modern design with smooth visual effects.
+Form validation
+Confirmation dialogues for important actions
+Toast notifications for user feedback
+Intuitive and easy to use interface
+Responsive design for all devices.
 
-```bash
-ng generate component component-name
-```
+## Author
+Otilia Nicola
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+GitHub: [text](https://github.com/OtiliaNicola)
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## License
+This project is licensed under the MIT License.
